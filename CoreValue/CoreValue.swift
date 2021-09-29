@@ -611,7 +611,7 @@ public extension BoxingUniqueStruct {
             
             // Fetch requests go all the way down to the database. First, we see
             // if we can find the object in the set of registered objects already
-            for registeredObject in ctx.registeredObjects {
+            for registeredObject in ctx.registeredObjects where registeredObject.entity.name == type(of: self).EntityName {
                 if predicate.evaluate(with: registeredObject) {
                     return registeredObject
                 }
